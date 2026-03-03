@@ -14,24 +14,14 @@ I am Shihao Shen, currently an Associate Professor at the School of Computer Sci
 
 #### 学术经历 | Academic Experience
 
-* **2026.02 ~**
+* **2026.02 ~**  山东大学 副教授（Associate Professor, Shandong University）
 
-​       山东大学 副教授（Associate Professor, Shandong University）
+* **2023.12 – 2024.12**  南洋理工大学 联合培养博士生（Visiting Ph.D. Student, Nanyang Technological University）
 
-* **2023.12 – 2024.12**  
+* **2021.09 – 2026.01** 天津大学 计算机科学与技术 博士（Ph.D. in Computer Science, Tianjin University）
 
-​       南洋理工大学 联合培养博士生（Visiting Ph.D. Student, Nanyang Technological University）
+* **2019.09 – 2021.07**  天津大学 计算机科学与技术 硕士（M.S. in Computer Science, Tianjin University）
 
-* **2021.09 – 2026.01** 
-
-​        天津大学 计算机科学与技术 博士（Ph.D. in Computer Science, Tianjin University）
-
-* **2019.09 – 2021.07**  
-
-​        天津大学 计算机科学与技术 硕士（M.S. in Computer Science, Tianjin University）
-
-* **2015.09 – 2019.07**  
-
-​        天津大学 计算机科学与技术 学士（B.E. in Computer Science, Tianjin University）
+* **2015.09 – 2019.07**  天津大学 计算机科学与技术 学士（B.E. in Computer Science, Tianjin University）
 
 ​        
