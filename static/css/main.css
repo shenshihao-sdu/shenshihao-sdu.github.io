@@ -110,3 +110,7 @@ section .main-body{
 }
 
 
+/* 中英文字体分离 */
+body {
+    font-family: "Times New Roman", "Microsoft YaHei", "微软雅黑", serif;
+}
