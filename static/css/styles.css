@@ -10909,10 +10909,3 @@ footer a:hover, footer a:active, footer a:focus {
   text-decoration: underline;
 }
 
-/* Publications & Patents 字号调整 */
-#publications .main-body,
-#patents .main-body {
-    font-size: 14px;
-}
-
-
