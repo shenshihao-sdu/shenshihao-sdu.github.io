@@ -7,29 +7,22 @@
   <meta name="author" content="senli1073" />
   <title id="title"></title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
 
-  <!-- Preload hero background to improve LCP -->
-  <link rel="preload" as="image" href="/static/assets/img/background.jpeg" />
+  <link rel="preload" as="image" href="/static/assets/img/background.jpeg" fetchpriority="high" />
 
-  <!-- Core CSS -->
+  <link rel="preload" href="/static/css/styles.css" as="style" />
   <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="preload" href="/static/css/main.css" as="style" />
   <link rel="stylesheet" href="/static/css/main.css" />
 
-  <!-- Bootstrap Icons (local, recommended for CN networks)
-       Put files under: /static/vendor/bootstrap-icons/
-       - /static/vendor/bootstrap-icons/bootstrap-icons.css
-       - /static/vendor/bootstrap-icons/fonts/* -->
   <link rel="stylesheet" href="/static/css/bootstrap-icons.css" />
 
-  <!-- Small critical fixes to reduce CLS and speed up mobile -->
   <style>
-    /* Reduce layout shift: reserve avatar space */
     #avatar {
       width: 320px;
       height: 400px;
-      margin: -120px auto 40px auto; /* adjust if your layout uses different overlap */
+      margin: -120px auto 40px auto;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -41,12 +34,8 @@
       display: block;
     }
 
-    /* Mobile: use smaller background if you have it (optional)
-       Create /static/assets/img/background-mobile.jpeg (or webp) */
+    /* Mobile tweaks (no background-mobile.jpeg to avoid 404) */
     @media (max-width: 768px) {
-      .top-section {
-        background-image: url("/static/assets/img/background-mobile.jpeg") !important;
-      }
       #avatar {
         width: 240px;
         height: 300px;
@@ -59,18 +48,21 @@
     }
   </style>
 
-  <!-- JS (defer to avoid blocking rendering) -->
   <script defer src="/static/js/bootstrap.bundle.min.js"></script>
   <script defer src="/static/js/marked.min.js"></script>
   <script defer src="/static/js/js-yaml.min.js"></script>
   <script defer src="/static/js/scripts.js"></script>
 
-  <!-- MathJax: load only if needed + prefer local to avoid CDN latency in CN networks
-       Put file under: /static/vendor/mathjax/tex-svg.js -->
   <script>
     function needsMathJax() {
-      const t = document.body ? (document.body.innerText || "") : "";
-      return t.includes("$$") || t.includes("\\(") || t.includes("\\[") || t.includes("$");
+      const ids = ["home-md", "publications-md", "patents-md"];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        const t = el.innerText || "";
+        if (t.includes("$$") || t.includes("\\(") || t.includes("\\[") || t.includes("$")) return true;
+      }
+      return false;
     }
 
     window.MathJax = {
@@ -82,9 +74,8 @@
       svg: { fontCache: 'global' }
     };
 
-    window.addEventListener("DOMContentLoaded", () => {
+    window.addEventListener("load", () => {
       if (!needsMathJax()) return;
-
       const s = document.createElement("script");
       s.async = true;
       s.src = "/static/js/tex-svg.js";
@@ -94,16 +85,13 @@
 </head>
 
 <body id="page-top">
-  <!-- Navigation -->
   <nav class="header navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
     <div class="container px-5">
       <a id="page-top-title" class="navbar-brand fw-bold" href="#page-top"></a>
-
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
               aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         MENU <i class="bi-list"></i>
       </button>
-
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
           <li class="nav-item"><a class="nav-link me-lg-3" href="#page-top">HOME</a></li>
@@ -114,7 +102,6 @@
     </div>
   </nav>
 
-  <!-- Top Section -->
   <section class="top-section" style="background-image: url('/static/assets/img/background.jpeg');">
     <div class="top-section-content">
       <div class="container px-5">
@@ -123,28 +110,24 @@
     </div>
   </section>
 
-  <!-- Photo -->
   <div class="container px-5">
     <div id="avatar">
       <img class="shadow"
            src="/static/assets/img/photo.png"
            width="320" height="400"
            loading="lazy" decoding="async"
+           fetchpriority="high"
            alt="Photo">
     </div>
   </div>
 
-  <!-- Home -->
   <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="home">
     <div class="container px-5">
-      <header>
-        <h2 id="home-subtitle"></h2>
-      </header>
+      <header><h2 id="home-subtitle"></h2></header>
       <div class="main-body" id="home-md"></div>
     </div>
   </section>
 
-  <!-- Publications -->
   <section class="bg-gradient-primary-to-secondary-gray mt5 md5" id="publications">
     <div class="container px-5">
       <header>
@@ -154,7 +137,6 @@
     </div>
   </section>
 
-  <!-- Patents -->
   <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="patents">
     <div class="container px-5">
       <header>
@@ -164,7 +146,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="bg-bottom text-center py-3">
     <div class="container px-5">
       <div class="text-white-50 small">
