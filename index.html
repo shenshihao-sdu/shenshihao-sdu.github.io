@@ -1,23 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Academic Webpage">
-  <meta name="author" content="ss">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Academic Webpage" />
+  <meta name="author" content="senli1073" />
   <title id="title"></title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico">
+  <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+
+  <!-- Preload hero background to improve LCP -->
+  <link rel="preload" as="image" href="/static/assets/img/background.jpeg" />
 
   <!-- Core CSS -->
-  <link rel="stylesheet" href="/static/css/styles.css">
-  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="stylesheet" href="/static/css/styles.css" />
+  <link rel="stylesheet" href="/static/css/main.css" />
 
-  <!-- Prefer local icon font to avoid slow/blocked CDNs in CN networks -->
-  <!-- Put bootstrap-icons.css + fonts under /static/vendor/bootstrap-icons/ -->
-  <link rel="stylesheet" href="/static/css/bootstrap-icons.css">
+  <!-- Bootstrap Icons (local, recommended for CN networks)
+       Put files under: /static/vendor/bootstrap-icons/
+       - /static/vendor/bootstrap-icons/bootstrap-icons.css
+       - /static/vendor/bootstrap-icons/fonts/* -->
+  <link rel="stylesheet" href="/static/css/bootstrap-icons.css" />
+
+  <!-- Small critical fixes to reduce CLS and speed up mobile -->
+  <style>
+    /* Reduce layout shift: reserve avatar space */
+    #avatar {
+      width: 320px;
+      height: 400px;
+      margin: -120px auto 40px auto; /* adjust if your layout uses different overlap */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #avatar img {
+      width: 320px;
+      height: 400px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Mobile: use smaller background if you have it (optional)
+       Create /static/assets/img/background-mobile.jpeg (or webp) */
+    @media (max-width: 768px) {
+      .top-section {
+        background-image: url("/static/assets/img/background-mobile.jpeg") !important;
+      }
+      #avatar {
+        width: 240px;
+        height: 300px;
+        margin: -90px auto 30px auto;
+      }
+      #avatar img {
+        width: 240px;
+        height: 300px;
+      }
+    }
+  </style>
 
   <!-- JS (defer to avoid blocking rendering) -->
   <script defer src="/static/js/bootstrap.bundle.min.js"></script>
@@ -25,10 +65,10 @@
   <script defer src="/static/js/js-yaml.min.js"></script>
   <script defer src="/static/js/scripts.js"></script>
 
-  <!-- MathJax: load only when needed (better for mobile) -->
+  <!-- MathJax: load only if needed + prefer local to avoid CDN latency in CN networks
+       Put file under: /static/vendor/mathjax/tex-svg.js -->
   <script>
     function needsMathJax() {
-      // Load MathJax only if the page likely contains TeX delimiters
       const t = document.body ? (document.body.innerText || "") : "";
       return t.includes("$$") || t.includes("\\(") || t.includes("\\[") || t.includes("$");
     }
@@ -45,8 +85,6 @@
     window.addEventListener("DOMContentLoaded", () => {
       if (!needsMathJax()) return;
 
-      // Prefer local MathJax to avoid CDN latency in CN networks:
-      // Download MathJax v3 es5/tex-svg.js to /static/js/tex-svg.js
       const s = document.createElement("script");
       s.async = true;
       s.src = "/static/js/tex-svg.js";
