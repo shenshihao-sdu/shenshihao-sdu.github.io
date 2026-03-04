@@ -88,24 +88,32 @@ section .main-body{
 }
 
 
-#avatar {
+/* --- Avatar: fix CLS (no float / no height:0 / reserve space) --- */
+#avatar{
     position: relative;
-    height: 0;
-    top:min(-65px,max(-100px,calc(-1*100vw/12)));
+    float: none;
+    top: 0;
+    height: auto;
     max-width: 55em;
-    margin: 0 1.5rem 0 0;
-    float: right;
+    margin: 0 auto 2rem auto;
+    display: flex;
+    justify-content: center;
     z-index: 9000;
 }
 
-#avatar img {
-    height: max(130px,min(200px,calc(100vw/6)));
+#avatar img{
+    width: 320px;
+    height: 400px;
+    object-fit: cover;
+    display: block;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
 }
 
-@media screen and (max-width: 991px) {
-    #avatar {
-        margin: 0;
+/* Mobile */
+@media screen and (max-width: 991px){
+    #avatar img{
+        width: 240px;
+        height: 300px;
     }
 }
 
