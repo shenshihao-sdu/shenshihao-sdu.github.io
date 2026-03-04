@@ -1,65 +1,113 @@
+// static/js/scripts.js
 
+const content_dir = "contents/";
+const config_file = "config.yml";
+const section_names = ["home", "publications", "patents"];
 
-const content_dir = 'contents/'
-const config_file = 'config.yml'
-const section_names = ['home', 'publications', 'patents']
+// 让重活在浏览器空闲时执行，降低 Total Blocking Time
+function idle(timeout = 1200) {
+  return new Promise((resolve) => {
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => resolve(), { timeout });
+    } else {
+      // Safari/旧浏览器降级
+      setTimeout(resolve, 0);
+    }
+  });
+}
 
+function setHTMLById(id, html) {
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = html;
+}
 
-window.addEventListener('DOMContentLoaded', event => {
+function setTextById(id, text) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = text;
+}
 
-    // Activate Bootstrap scrollspy on the main nav element
-    const mainNav = document.body.querySelector('#mainNav');
-    if (mainNav) {
-        new bootstrap.ScrollSpy(document.body, {
-            target: '#mainNav',
-            offset: 74,
-        });
-    };
+// 只在 MathJax 存在时调用，并尽量只 typeset 一次
+async function typesetMath() {
+  try {
+    if (!window.MathJax) return;
+    if (typeof MathJax.typesetPromise === "function") {
+      await MathJax.typesetPromise();
+    } else if (typeof MathJax.typeset === "function") {
+      MathJax.typeset();
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
 
-    // Collapse responsive navbar when toggler is visible
-    const navbarToggler = document.body.querySelector('.navbar-toggler');
-    const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
-    );
-    responsiveNavItems.map(function (responsiveNavItem) {
-        responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
-                navbarToggler.click();
-            }
-        });
+async function loadYamlConfig() {
+  try {
+    const resp = await fetch(content_dir + config_file, { cache: "force-cache" });
+    const text = await resp.text();
+    const yml = jsyaml.load(text);
+
+    Object.keys(yml || {}).forEach((key) => {
+      const v = yml[key];
+      // config 里多数是纯文本，优先 textContent；确实需要 HTML 再改回 innerHTML
+      setTextById(key, String(v));
     });
+  } catch (e) {
+    console.log(e);
+  }
+}
 
+async function loadSections() {
+  // marked 配置
+  marked.use({ mangle: false, headerIds: false });
 
-    // Yaml
-    fetch(content_dir + config_file)
-        .then(response => response.text())
-        .then(text => {
-            const yml = jsyaml.load(text);
-            Object.keys(yml).forEach(key => {
-                try {
-                    document.getElementById(key).innerHTML = yml[key];
-                } catch {
-                    console.log("Unknown id and value: " + key + "," + yml[key].toString())
-                }
+  // 先并行把 markdown 都拉下来（网络阶段不占用主线程太多）
+  const tasks = section_names.map(async (name) => {
+    const resp = await fetch(content_dir + name + ".md", { cache: "force-cache" });
+    const markdown = await resp.text();
+    return { name, markdown };
+  });
 
-            })
-        })
-        .catch(error => console.log(error));
+  let results = [];
+  try {
+    results = await Promise.all(tasks);
+  } catch (e) {
+    console.log(e);
+    return;
+  }
 
+  // 再分批在空闲时解析 + 注入（降低阻塞）
+  for (const { name, markdown } of results) {
+    await idle(1200);
+    const html = marked.parse(markdown);
+    setHTMLById(name + "-md", html);
+  }
 
-    // Marked
-    marked.use({ mangle: false, headerIds: false })
-    section_names.forEach((name, idx) => {
-        fetch(content_dir + name + '.md')
-            .then(response => response.text())
-            .then(markdown => {
-                const html = marked.parse(markdown);
-                document.getElementById(name + '-md').innerHTML = html;
-            }).then(() => {
-                // MathJax
-                MathJax.typeset();
-            })
-            .catch(error => console.log(error));
-    })
+  // 全部注入完成后，再统一 typeset 一次
+  await idle(1200);
+  await typesetMath();
+}
 
-}); 
+window.addEventListener("DOMContentLoaded", () => {
+  // Bootstrap scrollspy
+  const mainNav = document.body.querySelector("#mainNav");
+  if (mainNav) {
+    new bootstrap.ScrollSpy(document.body, { target: "#mainNav", offset: 74 });
+  }
+
+  // Collapse responsive navbar
+  const navbarToggler = document.body.querySelector(".navbar-toggler");
+  const responsiveNavItems = [].slice.call(
+    document.querySelectorAll("#navbarResponsive .nav-link")
+  );
+  responsiveNavItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      if (navbarToggler && window.getComputedStyle(navbarToggler).display !== "none") {
+        navbarToggler.click();
+      }
+    });
+  });
+
+  // 并行启动
+  loadYamlConfig();
+  loadSections();
+});
