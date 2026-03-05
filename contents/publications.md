@@ -21,7 +21,7 @@
 - Shihao Shen, Yuanming Ren, Yanli Ju, Xiaofei Wang, Wenyu Wang, Victor C. M. Leung. <u>EdgeMatrix: A Resource-redefined Scheduling Framework for SLA-guaranteed Multi-Tier Edge-cloud Computing Systems</u>,  in **IEEE Journal on Selected Areas in Communications**, 2022. (IF:13.081, CAS/JCR-1/CCF-A)
 - Yuanming Ren, Shihao Shen, Yanli Ju, Xiaofei Wang, Wenyu Wang, Victor C.M. Leung. <u>EdgeMatrix: A Resources Redefined Edge-Cloud System for Prioritized Services</u>, in **IEEE International Conference on Computer Communications (INFOCOM)**, 2022. (CCF-A类).
 
-- Yiwen Han, Shihao Shen, Xiaofei Wang, Shiqiang Wang, Victor C. M. Leung. T<u>ailored Learning-Based Scheduling of Kubernetes-Oriented Edge-Cloud System</u>, in **IEEE International Conference on Computer Communications (INFOCOM)**, 2021. （CCF-A类）
+- Yiwen Han, Shihao Shen, Xiaofei Wang, Shiqiang Wang, Victor C. M. Leung. <u>T</u><u>ailored Learning-Based Scheduling of Kubernetes-Oriented Edge-Cloud System</u>, in **IEEE International Conference on Computer Communications (INFOCOM)**, 2021. （CCF-A类）
 
 - Shihao Shen, Yiwen Han, Xiaofei Wang, Yan Wang.  <u>Computation Offloading with Multi-Agent in Edge Computing-supported IoT</u>,  in **ACM Transactions on Sensor Networks**, vol.7, no.1, 2019. (CCF-B，IF:2.507，CAS/JCR-3)
 
