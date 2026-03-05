@@ -10,22 +10,20 @@
   <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
 
   <link rel="preload" as="image" href="/static/assets/img/background.jpeg" fetchpriority="high" />
-
   <link rel="preload" href="/static/css/styles.css" as="style" />
   <link rel="stylesheet" href="/static/css/styles.css" />
   <link rel="preload" href="/static/css/main.css" as="style" />
   <link rel="stylesheet" href="/static/css/main.css" />
-
   <link rel="stylesheet" href="/static/css/bootstrap-icons.css" />
 
   <style>
     #avatar {
       width: 320px;
       height: 400px;
-      margin: -120px auto 40px auto;
+      margin: -120px 0 40px 0;
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-end;  /* 设置为右对齐 */
     }
     #avatar img {
       width: 320px;
@@ -39,7 +37,8 @@
       #avatar {
         width: 240px;
         height: 300px;
-        margin: -90px auto 30px auto;
+        margin: -90px 0 30px 0;
+        justify-content: flex-end; /* 确保移动端也是右对齐 */
       }
       #avatar img {
         width: 240px;
