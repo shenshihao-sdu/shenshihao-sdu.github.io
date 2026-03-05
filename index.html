@@ -16,19 +16,26 @@
   <link rel="stylesheet" href="/static/css/bootstrap-icons.css" />
 
   <style>
+    /* Reset some default browser styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box; /* Ensure consistent box model across browsers */
+    }
+
     /* Photo container styling */
     #avatar {
-      width: 140px;  /* Make the photo even smaller */
+      width: 140px;  /* Make the photo smaller */
       height: 180px; /* Adjust photo height */
       margin: -40px 0 20px 0; /* Adjust margins to lift text and separate it from photo */
-      display: block; /* Use block to ensure right alignment works */
+      display: block; /* Ensure right alignment works */
       margin-left: auto; /* Push the photo to the right */
       margin-right: 0;  /* Ensure there is no margin on the right side */
     }
 
     #avatar img {
-      width: 140px;  /* Make the image smaller */
-      height: 180px; /* Adjust photo height */
+      width: 100%;  /* Make the image fill the container */
+      height: 100%; /* Adjust photo height */
       object-fit: cover;  /* Ensure the image covers the area without distortion */
       display: block;
     }
@@ -41,8 +48,8 @@
         margin: -30px 0 15px 0; /* Adjust margins for mobile to avoid tight spacing */
       }
       #avatar img {
-        width: 120px;  /* Adjust for smaller screen size */
-        height: 160px; /* Adjust for smaller screen size */
+        width: 100%;  /* Make the image fill the container */
+        height: 100%; /* Adjust photo height */
       }
     }
   </style>
