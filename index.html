@@ -18,9 +18,9 @@
   <style>
     /* Photo container styling */
     #avatar {
-      width: 140px;  /* Make the photo even smaller */
+      width: 140px;  /* Make the photo smaller */
       height: 180px; /* Adjust photo height */
-      margin: -40px 0 20px 0; /* Adjust margins to lift text and separate it from photo */
+      margin: 0 0 20px 0; /* Remove top margin and keep a small margin at the bottom */
       display: block; /* Use block to ensure right alignment works */
       margin-left: auto; /* Push the photo to the right */
       margin-right: 0;  /* Ensure there is no margin on the right side */
@@ -38,12 +38,17 @@
       #avatar {
         width: 120px;  /* Adjust for smaller screen size */
         height: 160px; /* Adjust for smaller screen size */
-        margin: -30px 0 15px 0; /* Adjust margins for mobile to avoid tight spacing */
+        margin: 0 0 15px 0; /* Adjust margins for mobile to avoid tight spacing */
       }
       #avatar img {
         width: 120px;  /* Adjust for smaller screen size */
         height: 160px; /* Adjust for smaller screen size */
       }
+    }
+
+    /* Adjusting section where text is to ensure no top margin */
+    .top-section-content {
+      margin-top: -40px; /* Move text upwards to fill the gap */
     }
   </style>
 
