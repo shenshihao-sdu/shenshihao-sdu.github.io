@@ -1,12 +1,12 @@
-I am Shihao Shen, currently an Associate Professor at the School of Computer Science and Technology, Shandong University. My research focuses on edge-cloud computing, distributed systems, and resource scheduling, aiming to design efficient and reliable computing infrastructures for real-world environments. I am driven by curiosity and sustained exploration, and I believe meaningful research grows from both focus and openness.
+I am Shihao Shen, currently a tenure-track Associate Professor at the School of Computer Science and Technology, Shandong University. My research focuses on edge-cloud computing, distributed systems, and resource scheduling, aiming to design efficient and reliable computing infrastructures for real-world environments. I am driven by curiosity and sustained exploration, and I believe meaningful research grows from both focus and openness.
 
-我是沈仕浩，目前是山东大学计算机科学与技术学院副教授。研究方向包括边云协同、分布式系统与资源调度，致力于构建面向真实环境的高效、可靠算力基础设施。我始终以好奇心驱动研究，也相信真正有价值的工作源于持续的专注与开放的视野。
+我是沈仕浩，目前是山东大学计算机科学与技术学院预聘副教授。研究方向包括边云协同、分布式系统与资源调度，致力于构建面向真实环境的高效、可靠算力基础设施。我始终以好奇心驱动研究，也相信真正有价值的工作源于持续的专注与开放的视野。
 
 #### <br>
 
 #### 学术经历 | Academic Experience
 
-* **2026.02 ~**  山东大学 副教授（Associate Professor, Shandong University）
+* **2026.02 ~**  山东大学 预聘副教授（Tenure-track Associate Professor, Shandong University）
 
 * **2023.12 – 2024.12**  南洋理工大学 联合培养博士生（Visiting Ph.D. Student, Nanyang Technological University）
 
