@@ -8,7 +8,6 @@
   <title id="title"></title>
 
   <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
-
   <link rel="preload" as="image" href="/static/assets/img/background.jpeg" fetchpriority="high" />
   <link rel="preload" href="/static/css/styles.css" as="style" />
   <link rel="stylesheet" href="/static/css/styles.css" />
@@ -17,32 +16,33 @@
   <link rel="stylesheet" href="/static/css/bootstrap-icons.css" />
 
   <style>
+    /* Photo container styling */
     #avatar {
-      width: 320px;
-      height: 400px;
+      width: 250px;  /* Make the photo smaller */
+      height: 300px; /* Make the photo smaller */
       margin: -120px 0 40px 0;
       display: flex;
-      align-items: center;
-      justify-content: flex-end;  /* 设置为右对齐 */
+      justify-content: flex-end;  /* Align the photo to the right */
     }
+    
     #avatar img {
-      width: 320px;
-      height: 400px;
-      object-fit: cover;
+      width: 250px;  /* Make the image smaller */
+      height: 300px; /* Make the image smaller */
+      object-fit: cover;  /* Ensure the image covers the area without distortion */
       display: block;
     }
 
-    /* Mobile tweaks (no background-mobile.jpeg to avoid 404) */
+    /* Mobile adjustments */
     @media (max-width: 768px) {
       #avatar {
-        width: 240px;
-        height: 300px;
+        width: 200px;  /* Adjust for smaller screen size */
+        height: 250px; /* Adjust for smaller screen size */
         margin: -90px 0 30px 0;
-        justify-content: flex-end; /* 确保移动端也是右对齐 */
+        justify-content: flex-end; /* Ensure the image is right-aligned on mobile */
       }
       #avatar img {
-        width: 240px;
-        height: 300px;
+        width: 200px;  /* Adjust for smaller screen size */
+        height: 250px; /* Adjust for smaller screen size */
       }
     }
   </style>
@@ -109,14 +109,14 @@
     </div>
   </section>
 
-
-    <!-- Photo -->
+  <!-- Photo -->
   <div class="container px-5">
     <div id="avatar">
-        <img class="shadow" src="/static/assets/img/photo.webp">
+      <img class="shadow" src="/static/assets/img/photo.webp">
     </div>
   </div>
-    <!-- Photo -->
+  <!-- Photo -->
+
   <section class="bg-gradient-primary-to-secondary-light mt5 md5" id="home">
     <div class="container px-5">
       <header><h2 id="home-subtitle"></h2></header>
